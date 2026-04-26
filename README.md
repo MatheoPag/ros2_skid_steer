@@ -1,10 +1,10 @@
-# my_robot — Modélisation et simulation (ROS 2 Humble)
+# my_robot - Modélisation et simulation (ROS 2 Humble)
 
 Paquet ROS 2 : modèle URDF d’un robot mobile à quatre roues (skid-steer), visualisation **RViz**, simulation **Gazebo Classic** (`gazebo_ros`).
 
 ## Prérequis
 
-- **Ubuntu 22.04**, **ROS 2 Humble** — [documentation d’installation](https://docs.ros.org/en/humble/Installation.html)
+- **Ubuntu 22.04**, **ROS 2 Humble** : [documentation d’installation](https://docs.ros.org/en/humble/Installation.html)
 - Paquets Debian (noms sous Humble) :
 
 ```bash
