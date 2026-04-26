@@ -1,0 +1,226 @@
+<?xml version="1.0"?>
+
+<robot name="my_robot">
+
+  <!-- BASE -->
+  <link name="base_link">
+    <visual>
+      <geometry><box size="1.37 1.05 0.15"/></geometry>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <material name="blue">
+        <color rgba="0.2 0.4 0.8 1.0"/>
+      </material>
+    </visual>
+    <collision>
+      <geometry><box size="1.37 1.05 0.15"/></geometry>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+    </collision>
+    <inertial>
+      <!-- Masse aproximative -->
+      <mass value="300.0"/>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <inertia ixx="28.125" ixy="0.0" ixz="0.0"
+               iyy="47.485" iyz="0.0"
+               izz="74.485"/>
+    </inertial>
+  </link>
+
+  <!-- ROUE ARRIERE GAUCHE -->
+  <link name="wheel_rear_left">
+    <visual>
+      <geometry><cylinder radius="0.075" length="0.08"/></geometry>
+      <origin xyz="0 0 0" rpy="1.5708 0 0"/>
+      <material name="black"><color rgba="0.1 0.1 0.1 1.0"/></material>
+    </visual>
+    <visual>
+      <origin xyz="0.072 0 0" rpy="0 0 0"/>
+      <geometry><box size="0.02 0.09 0.014"/></geometry>
+      <material name="stripe_white"><color rgba="0.95 0.95 0.95 1.0"/></material>
+    </visual>
+    <visual>
+      <origin xyz="0 0 0.072" rpy="0 0 0"/>
+      <geometry><box size="0.014 0.09 0.02"/></geometry>
+      <material name="stripe_yellow"><color rgba="0.95 0.85 0.1 1.0"/></material>
+    </visual>
+    <collision>
+      <geometry><cylinder radius="0.075" length="0.08"/></geometry>
+      <origin xyz="0 0 0" rpy="1.5708 0 0"/>
+    </collision>
+    <inertial>
+      <mass value="6.0"/>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <inertia ixx="0.0116375" ixy="0.0" ixz="0.0"
+               iyy="0.016875" iyz="0.0"
+               izz="0.0116375"/>
+    </inertial>
+  </link>
+  <joint name="joint_wheel_rear_left" type="continuous">
+    <parent link="base_link"/>
+    <child link="wheel_rear_left"/>
+    <origin xyz="-0.685 0.565 -0.075" rpy="0 0 0"/>
+    <axis xyz="0 1 0"/>
+  </joint>
+
+  <!-- ROUE ARRIERE DROITE -->
+  <link name="wheel_rear_right">
+    <visual>
+      <geometry><cylinder radius="0.075" length="0.08"/></geometry>
+      <origin xyz="0 0 0" rpy="1.5708 0 0"/>
+      <material name="black"><color rgba="0.1 0.1 0.1 1.0"/></material>
+    </visual>
+    <visual>
+      <origin xyz="0.072 0 0" rpy="0 0 0"/>
+      <geometry><box size="0.02 0.09 0.014"/></geometry>
+      <material name="stripe_white"><color rgba="0.95 0.95 0.95 1.0"/></material>
+    </visual>
+    <visual>
+      <origin xyz="0 0 0.072" rpy="0 0 0"/>
+      <geometry><box size="0.014 0.09 0.02"/></geometry>
+      <material name="stripe_yellow"><color rgba="0.95 0.85 0.1 1.0"/></material>
+    </visual>
+    <collision>
+      <geometry><cylinder radius="0.075" length="0.08"/></geometry>
+      <origin xyz="0 0 0" rpy="1.5708 0 0"/>
+    </collision>
+    <inertial>
+      <mass value="6.0"/>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <inertia ixx="0.0116375" ixy="0.0" ixz="0.0"
+               iyy="0.016875" iyz="0.0"
+               izz="0.0116375"/>
+    </inertial>
+  </link>
+  <joint name="joint_wheel_rear_right" type="continuous">
+    <parent link="base_link"/>
+    <child link="wheel_rear_right"/>
+    <origin xyz="-0.685 -0.565 -0.075" rpy="0 0 0"/>
+    <axis xyz="0 1 0"/>
+  </joint>
+
+  <!-- ROUE AVANT GAUCHE (motorisée par diff_drive : 2e paire, voir num_wheel_pairs) -->
+  <link name="wheel_front_left">
+    <visual>
+      <geometry><cylinder radius="0.075" length="0.08"/></geometry>
+      <origin xyz="0 0 0" rpy="1.5708 0 0"/>
+      <material name="black"><color rgba="0.1 0.1 0.1 1.0"/></material>
+    </visual>
+    <visual>
+      <origin xyz="0.072 0 0" rpy="0 0 0"/>
+      <geometry><box size="0.02 0.09 0.014"/></geometry>
+      <material name="stripe_white"><color rgba="0.95 0.95 0.95 1.0"/></material>
+    </visual>
+    <visual>
+      <origin xyz="0 0 0.072" rpy="0 0 0"/>
+      <geometry><box size="0.014 0.09 0.02"/></geometry>
+      <material name="stripe_yellow"><color rgba="0.95 0.85 0.1 1.0"/></material>
+    </visual>
+    <collision>
+      <geometry><cylinder radius="0.075" length="0.08"/></geometry>
+      <origin xyz="0 0 0" rpy="1.5708 0 0"/>
+    </collision>
+    <inertial>
+      <mass value="6.0"/>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <inertia ixx="0.0116375" ixy="0.0" ixz="0.0"
+               iyy="0.016875" iyz="0.0"
+               izz="0.0116375"/>
+    </inertial>
+  </link>
+  <joint name="joint_wheel_front_left" type="continuous">
+    <parent link="base_link"/>
+    <child link="wheel_front_left"/>
+    <origin xyz="0.685 0.565 -0.075" rpy="0 0 0"/>
+    <axis xyz="0 1 0"/>
+  </joint>
+
+  <!-- ROUE AVANT DROITE -->
+  <link name="wheel_front_right">
+    <visual>
+      <geometry><cylinder radius="0.075" length="0.08"/></geometry>
+      <origin xyz="0 0 0" rpy="1.5708 0 0"/>
+      <material name="black"><color rgba="0.1 0.1 0.1 1.0"/></material>
+    </visual>
+    <visual>
+      <origin xyz="0.072 0 0" rpy="0 0 0"/>
+      <geometry><box size="0.02 0.09 0.014"/></geometry>
+      <material name="stripe_white"><color rgba="0.95 0.95 0.95 1.0"/></material>
+    </visual>
+    <visual>
+      <origin xyz="0 0 0.072" rpy="0 0 0"/>
+      <geometry><box size="0.014 0.09 0.02"/></geometry>
+      <material name="stripe_yellow"><color rgba="0.95 0.85 0.1 1.0"/></material>
+    </visual>
+    <collision>
+      <geometry><cylinder radius="0.075" length="0.08"/></geometry>
+      <origin xyz="0 0 0" rpy="1.5708 0 0"/>
+    </collision>
+    <inertial>
+      <mass value="6.0"/>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <inertia ixx="0.0116375" ixy="0.0" ixz="0.0"
+               iyy="0.016875" iyz="0.0"
+               izz="0.0116375"/>
+    </inertial>
+  </link>
+  <joint name="joint_wheel_front_right" type="continuous">
+    <parent link="base_link"/>
+    <child link="wheel_front_right"/>
+    <origin xyz="0.685 -0.565 -0.075" rpy="0 0 0"/>
+    <axis xyz="0 1 0"/>
+  </joint>
+
+  <!-- Gazebo Classic materials -->
+  <gazebo reference="base_link">
+    <material>Gazebo/Blue</material>
+  </gazebo>
+
+  <gazebo reference="wheel_front_left">
+    <mu1>1.0</mu1>
+    <mu2>1.0</mu2>
+  </gazebo>
+
+  <gazebo reference="wheel_front_right">
+    <mu1>1.0</mu1>
+    <mu2>1.0</mu2>
+  </gazebo>
+
+  <gazebo reference="wheel_rear_left">
+    <mu1>1.0</mu1>
+    <mu2>1.0</mu2>
+  </gazebo>
+
+  <gazebo reference="wheel_rear_right">
+    <mu1>1.0</mu1>
+    <mu2>1.0</mu2>
+  </gazebo>
+
+  <gazebo>
+    <plugin name="diff_drive" filename="libgazebo_ros_diff_drive.so">
+
+      <num_wheel_pairs>2</num_wheel_pairs>
+
+      <left_joint>joint_wheel_rear_left</left_joint>
+      <left_joint>joint_wheel_front_left</left_joint>
+      <right_joint>joint_wheel_rear_right</right_joint>
+      <right_joint>joint_wheel_front_right</right_joint>
+
+      <wheel_separation>1.13</wheel_separation>
+      <wheel_separation>1.13</wheel_separation>
+      <wheel_diameter>0.15</wheel_diameter>
+      <wheel_diameter>0.15</wheel_diameter>
+
+      <max_wheel_torque>2500</max_wheel_torque>
+      <max_wheel_acceleration>80.0</max_wheel_acceleration>
+
+      <robot_base_frame>base_link</robot_base_frame>
+
+      <publish_odom>true</publish_odom>
+      <publish_odom_tf>true</publish_odom_tf>
+      <publish_wheel_tf>true</publish_wheel_tf>
+
+      <odometry_frame>odom</odometry_frame>
+
+    </plugin>
+  </gazebo>
+
+</robot>
