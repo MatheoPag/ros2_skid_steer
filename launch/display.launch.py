@@ -1,18 +1,15 @@
 import os
 import launch
-from launch.substitutions import Command, LaunchConfiguration
+from launch.substitutions import LaunchConfiguration
 import launch_ros
 
 def generate_launch_description():
     pkgPath = launch_ros.substitutions.FindPackageShare(package='my_robot').find("my_robot")
     urdfModelPath = os.path.join(pkgPath, 'urdf/robot.urdf')
     rviz_config = os.path.join(pkgPath, 'config', 'config.rviz')
-    
-    controllers_yaml = os.path.join(pkgPath, 'config', 'controllers.yaml')
+
     with open(urdfModelPath, 'r') as file:
-        robot_desc = file.read().replace(
-            '__CONTROLLERS_YAML__', controllers_yaml
-        )
+        robot_desc = file.read()
 
     params = {'robot_description': robot_desc}
 
