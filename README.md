@@ -77,6 +77,12 @@ Commande :
 ros2 launch my_robot launch_sim.launch.py
 ```
 
+Sans RViz (Gazebo + `robot_state_publisher` + GUI des joints uniquement) :
+
+```bash
+ros2 launch my_robot launch_sim.launch.py rviz:=false
+```
+
 Effet conjoint :
 
 - nœuds de `display.launch.py` avec `use_sim_time:=true` ;

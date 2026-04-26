@@ -15,12 +15,23 @@ def generate_launch_description():
 
     package_name='my_robot'
 
+    rviz = LaunchConfiguration('rviz')
+
     rsp = IncludeLaunchDescription(
                 PythonLaunchDescriptionSource([os.path.join(
                     get_package_share_directory(package_name),'launch','display.launch.py'
-                )]), launch_arguments={'use_sim_time': 'True', 'rviz': 'True'}.items()
+                )]), launch_arguments={
+                    'use_sim_time': 'True',
+                    'rviz': rviz,
+                }.items()
     )
-    
+
+    rviz_arg = DeclareLaunchArgument(
+        'rviz',
+        default_value='true',
+        description='Lancer RViz (false pour Gazebo seul)',
+    )
+
     world = LaunchConfiguration('world')
 
     world_arg = DeclareLaunchArgument(
@@ -59,6 +70,7 @@ def generate_launch_description():
     spawn_after_gazebo = TimerAction(period=2.0, actions=[spawn_entity])
 
     return LaunchDescription([
+        rviz_arg,
         rsp,
         world_arg,
         gazebo,
